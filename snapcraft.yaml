@@ -1,0 +1,51 @@
+name: xmrig
+adopt-info: xmrig
+summary: XMRig is a high performance, open source, cross platform CPU/GPU miner
+description: |
+  XMRig is a high performance, open source, cross platform RandomX, KawPow, 
+  CryptoNight and AstroBWT unified CPU/GPU miner and RandomX benchmark. Official 
+  binaries are available for Windows, Linux, macOS and FreeBSD.
+  
+license: GPL-3.0
+
+base: core18
+grade: stable
+confinement: strict
+
+apps:
+  xmrig:
+    command: xmrig
+    plugs:
+      - home
+      - network
+      - network-bind
+      
+parts:
+  xmrig:
+    source: https://github.com/xmrig/xmrig
+    source-type: git
+    plugin: nil
+    
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
+      
+    override-build: |
+    
+      git clone https://github.com/xmrig/xmrig.git
+      mv xmrig/* $SNAPCRAFT_PART_INSTALL
+      cmake ..
+      make -j4
+      
+    build-packages:
+      - git 
+      - build-essential 
+      - cmake 
+      - libuv1-dev 
+      - libssl-dev 
+      - libhwloc-dev
+      
+    stage-packages:
+      - libuv1-dev 
+      - libssl-dev 
+      - libhwloc-dev
