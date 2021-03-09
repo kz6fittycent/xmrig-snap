@@ -24,18 +24,11 @@ parts:
   xmrig:
     source: https://github.com/xmrig/xmrig
     source-type: git
-    plugin: nil
+    plugin: cmake
     
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
-      
-    override-build: |
-    
-      git clone https://github.com/xmrig/xmrig.git
-      mv xmrig/* $SNAPCRAFT_PART_INSTALL
-      cmake ..
-      make -j4
       
     build-packages:
       - git 
