@@ -25,6 +25,8 @@ parts:
     source: https://github.com/xmrig/xmrig
     source-type: git
     plugin: cmake
+    configflags:
+      - -DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_PART_INSTALL
     
     override-pull: |
       snapcraftctl pull
