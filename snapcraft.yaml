@@ -67,10 +67,6 @@ parts:
       - libssl-dev 
       - libhwloc-dev
       - wget
-       
-    stage-packages:
-      - libssl-dev 
-      - libhwloc-dev
       
   homeishome-launch:
     plugin: nil
