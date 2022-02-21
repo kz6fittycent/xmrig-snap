@@ -20,8 +20,8 @@ confinement: strict
 compression: lzo
 
 architectures:
-  - build-on: amd64
-    run-on: [amd64, armhf, arm64, ppc64el, s390x]
+  - build-on: amd64    
+    run-on: [amd64, arm64]
 
 assumes:
   - command-chain
@@ -66,9 +66,9 @@ parts:
       - libuv1-dev 
       - libssl-dev 
       - libhwloc-dev
-      - wget      
+      - wget
+       
     stage-packages:
-      - libuv1-dev 
       - libssl-dev 
       - libhwloc-dev
       
