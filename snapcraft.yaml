@@ -26,14 +26,6 @@ architectures:
 assumes:
   - command-chain
 
-layout:
-  /usr/include/clc:
-    bind: $SNAP/usr/include/clc
-  /usr/lib/clc:
-    bind: $SNAP/usr/lib/clc
-  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gallium-pipe:
-    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gallium-pipe
-    
 apps:
   xmrig:
     command: bin/xmrig
@@ -76,23 +68,11 @@ parts:
       - libssl-dev 
       - libhwloc-dev
       - wget
-      - mesa-opencl-icd
-      - ocl-icd-libopencl1
-      - opencl-headers 
-      - libglu1-mesa    
       
   homeishome-launch:
     plugin: nil
     stage-snaps:
       - homeishome-launch 
-       
-  opencl:
-    plugin: nil
-    stage-packages:
-      - mesa-opencl-icd
-      - ocl-icd-libopencl1
-      - opencl-headers 
-      - libglu1-mesa       
             
   files:
     plugin: dump
