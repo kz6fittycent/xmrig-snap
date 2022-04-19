@@ -23,14 +23,9 @@ architectures:
   - build-on: amd64    
     run-on: [amd64, arm64, armhf]
 
-assumes:
-  - command-chain
-
 apps:
   xmrig:
     command: bin/xmrig
-    command-chain: 
-      - bin/homeishome-launch     
     plugs:
       - home
       - network
@@ -68,11 +63,6 @@ parts:
       - libssl-dev 
       - libhwloc-dev
       - wget
-      
-  homeishome-launch:
-    plugin: nil
-    stage-snaps:
-      - homeishome-launch 
             
   files:
     plugin: dump
